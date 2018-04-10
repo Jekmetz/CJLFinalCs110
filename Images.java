@@ -7,44 +7,44 @@ import javax.imageio.ImageIO;
 public class Images {
 	private BufferedImage[] img = null;
 
-	public void addImagesFromFolder(String filepath) {
+	public void addImagesFromFolder( String filepath ) {
 		/*
 		 *Method that looks through a folder and adds each of the buffered images into it.
 		 */
 		File folder = null;
 		File[] filenames = null;
 		try {
-			folder = new File(filepath).getCanonicalFile();
+			folder = new File( filepath ).getCanonicalFile();
 			filenames = folder.listFiles();
 		} catch (IOException e) {
-			System.out.println("Something went wrong");	//Damn.
+			System.out.println( "Something went wrong" );	//Damn.
 		}
 		
 		img = new BufferedImage[filenames.length];
 		
 		for (int i = 0; i < filenames.length; i++) {
 
-			img[i] = loadImage(filenames[i].toString());
+			img[i] = loadImage( filenames[i].toString() );
 			
 		}
 	}
 
-	private BufferedImage loadImage(String filepath){
+	private static BufferedImage loadImage( String filepath ){
 		// Load in the image.
-		BufferedImage buffImg = loadBufferedImage(filepath);
+		BufferedImage buffImg = loadBufferedImage( filepath );
 		return buffImg;
 	}
 
-	private static BufferedImage loadBufferedImage(String filepath) {
+	private static BufferedImage loadBufferedImage( String filepath ) {
 		// A BufferedImage initialization.
 		BufferedImage img = null;
 
 		// Try to read an image from the specified path.
 		try {
 			// Read the (image) File the path directs to.
-			img = ImageIO.read(new File(filepath));
+			img = ImageIO.read( new File( filepath ) );
 		} catch (IOException e) {
-			System.out.println("Could not load the image, please ensure the filepath" + " was properly specified.");
+			System.out.println( "Could not load the image, please ensure the filepath" + " was properly specified." );
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -52,7 +52,7 @@ public class Images {
 		return img;
 	}
 	
-	public BufferedImage getImage(int index) {
+	public BufferedImage getImage( int index ) {
 		return img[index];		
 	}
 	
