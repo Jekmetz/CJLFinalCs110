@@ -1,4 +1,9 @@
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
 
 class Emojify{
 
@@ -63,5 +68,30 @@ class Emojify{
     return canvas;
   }
 
+  public static void emojifyFolder(Images imgs, String folderName, int numPics, int tileSize) {
+		/*
+		 *Function that Creates a folder with a bunch of static-y images in it.
+		 */
+	
+		for (int i = 0; i < imgs.getLength(); i++) {
 
+			Color[][] img = emojify(tileSize,ImageUtils.cloneArray(ImageUtils.convertTo2DFromBuffered(imgs.getImage(i))));
+
+			BufferedImage bi = ImageUtils.convertToBufferedFrom2D(img);
+
+			try {
+				File filepath = new File(".\\" + folderName + "\\output" + Integer.toString(i) + ".png").getCanonicalFile();
+
+				if (!new File(".\\" + folderName).getCanonicalFile().exists()) {
+					new File(".\\" + folderName).getCanonicalFile().mkdir();
+				}
+
+				ImageIO.write(bi, "png", filepath);
+			} catch (IIOException e) {
+				System.out.println("Damn it all");
+			} catch (IOException e) {
+				System.out.println("Damn it all again");
+			}
+		}
+	}
 }
