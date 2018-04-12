@@ -38,58 +38,7 @@ class EmojiLookupTable extends LookupTable{
 
       table.get( Integer.toString(dist) ).add( new Emoji( imageFiles[i].getAbsolutePath() ) );
     }
-
-    //System.out.println( table );
   }
-
-  /*
-  public static Emoji findEmoji( Color color ){
-    int standardDist = (int) Math.round( LookupTable.calculateStandardColorDistance( color ) );
-    String key = null;
-    int offset = 0;
-    int closestIndex = 0;
-    double dist = 0;
-    double closestDist = 255;
-
-    //System.out.println("======================================");
-    //System.out.println( color );
-    //System.out.println( "HAS STANDARD INDEX: " + standardDist );
-
-    while ( key == null ){
-      if ( table.containsKey( Integer.toString( standardDist + offset ) ) ){
-        key = Integer.toString( standardDist + offset );
-        break;
-      }
-
-      if (offset > 0){
-        offset = -( Math.abs(offset) + 1 );
-      } else {
-        offset = Math.abs(offset) + 1;
-      }
-    }
-
-    //System.out.println( "FOUND KEY: " + key );
-    //System.out.println( "CONTAINS COUNT:" + table.get( key ).size() );
-
-    for (int i = 0; i < table.get( key ).size(); i++) {
-
-      dist = LookupTable.calculateColorDistance( table.get(key).get(i).avgColor, color );
-
-      //System.out.println( dist );
-
-      if ( dist < closestDist ){
-        closestDist = dist;
-        closestIndex = i;
-      }
-    }
-
-    //System.out.println( "ARRIVED AT INDEX: " + closestIndex );
-    //System.out.println( "WITH DISTANCE: " + closestDist );
-
-    return table.get( key ).get( closestIndex );
-
-  }
-  */
 
   public static Emoji findEmoji( Color color ){
     int standardDist = (int) Math.round( LookupTable.calculateStandardColorDistance( color ) );
