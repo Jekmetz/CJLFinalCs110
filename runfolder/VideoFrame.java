@@ -11,11 +11,11 @@ public class VideoFrame {
 	private JLabel label;
 	private Timer timer = new Timer();
 
-	public VideoFrame() {
+	public VideoFrame(String name) {
 		/*
 		 *Constructor that sets the frame name that initializes the JFrame
 		 */
-		frame = new JFrame( "Video Frame" );
+		frame = new JFrame( name );
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		label = new JLabel();
 		frame.setContentPane( label );

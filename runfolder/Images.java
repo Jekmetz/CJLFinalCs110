@@ -6,6 +6,8 @@ import javax.imageio.ImageIO;
 
 public class Images {
 	private BufferedImage[] img = null;
+	
+	private static Timer imageTimer = new Timer();
 
 	public void addImagesFromFolder( String filepath ) {
 		/*
@@ -24,7 +26,9 @@ public class Images {
 		
 		for (int i = 0; i < filenames.length; i++) {
 
+			imageTimer.start();
 			img[i] = loadImage( filenames[i].toString() );
+			System.out.printf("Image %d of %d added in %d ms\n",i,filenames.length,imageTimer.stop());
 			
 		}
 	}

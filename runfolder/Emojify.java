@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 
 class Emojify{
 
+  private static Timer emojiTimer = new Timer();
+
   public static EmojiTile[][] toMosaic( int tileSize, Color[][] pixels ){
     int outputX = (int) Math.ceil( pixels[0].length / (double) tileSize );
     int outputY = (int) Math.ceil( pixels.length / (double) tileSize );
@@ -68,19 +70,25 @@ class Emojify{
     return canvas;
   }
 
-  public static void emojifyFolder(Images imgs, String folderName, int numPics, int tileSize) {
+  public static void emojifyFolder(Images imgs, String folderName, int tileSize) {
 		/*
 		 *Function that Creates a folder with a bunch of static-y images in it.
 		 */
 	
 		for (int i = 0; i < imgs.getLength(); i++) {
+			emojiTimer.start();
 
-			Color[][] img = emojify(tileSize,ImageUtils.cloneArray(ImageUtils.convertTo2DFromBuffered(imgs.getImage(i))));
+			Color[][] img = Emojify.emojify(tileSize,ImageUtils.cloneArray(ImageUtils.convertTo2DFromBuffered(imgs.getImage(i))));
 
 			BufferedImage bi = ImageUtils.convertToBufferedFrom2D(img);
 
 			try {
-				File filepath = new File(".\\" + folderName + "\\output" + Integer.toString(i) + ".png").getCanonicalFile();
+				File filepath = null;
+				if(i < 10){
+					filepath = new File(".\\" + folderName + "\\output" + "0" + Integer.toString(i) + ".png").getCanonicalFile();
+				}else{
+					filepath = new File(".\\" + folderName + "\\output" + Integer.toString(i) + ".png").getCanonicalFile();
+				}
 
 				if (!new File(".\\" + folderName).getCanonicalFile().exists()) {
 					new File(".\\" + folderName).getCanonicalFile().mkdir();
@@ -92,6 +100,8 @@ class Emojify{
 			} catch (IOException e) {
 				System.out.println("Damn it all again");
 			}
+
+			System.out.printf("Image %d out of %d succesfully emojified in %d ms\n",i,imgs.getLength(),emojiTimer.stop());
 		}
 	}
 }

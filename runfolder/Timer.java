@@ -1,7 +1,7 @@
 import java.util.Date;
 
-class Timer {
-  private static long startTime;
+public class Timer {
+  public static long startTime;
 
   public static void start(){
     startTime = System.currentTimeMillis();
