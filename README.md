@@ -7,6 +7,11 @@
 * If you want to add your own image sequence, follow the instructions in videoMain.java and recompile
 * Have a superbulous day
 
+-------------Eclipse Noobs---------------
+* If you really must run this in eclipse, then I have the repository just for you!
+* Go to Jekmetz on github and look for the repository CJLFinalProjCsEclipse.
+* Import that in eclipse and it should do swimmingly
+
 -------------farewell--------------------
 
 Cheers
