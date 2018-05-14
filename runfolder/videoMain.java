@@ -23,14 +23,27 @@ public class videoMain {
 		*/
 
 		VideoFrame vidFrame = new VideoFrame("Original Gif");
-		vidFrame.display();
-		vidFrame.repeatedImages(imgArray,10);
-		
-
+	
 		Images imgArrayEmoji = new Images();
 		VideoFrame vidFrameDef = new VideoFrame("Emojified Gif");
+
 		imgArrayEmoji.addImagesFromFolder("outputVideo");
 		vidFrameDef.display();
-		vidFrameDef.repeatedImages(imgArrayEmoji,10);
+		vidFrame.display();		
+		vidFrame.repeatedImages(imgArray,100);
+		vidFrameDef.repeatedImages(imgArrayEmoji,100);
+
+		Images slowOrig = new Images();
+		slowOrig.addImagesFromFolder("fullOfPictures");
+		Images slowEmoji = new Images();
+		slowEmoji.addImagesFromFolder("outputVideo");
+		VideoFrame slowFrame = new VideoFrame("Orig Slow");
+		VideoFrame slowEmojiFrame = new VideoFrame("Emoji Slow");
+		slowFrame.display();
+		slowEmojiFrame.display();
+		slowFrame.repeatedImages(slowOrig,10);
+		slowEmojiFrame.repeatedImages(slowEmoji,10);
+
+		
 	}
 }
